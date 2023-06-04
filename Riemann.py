@@ -1,7 +1,7 @@
 import numpy as np
 
 def f(x):
-  return x**2 -5
+  return x**2 - 5
 
 a = 2
 b = 5
