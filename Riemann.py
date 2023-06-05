@@ -1,7 +1,7 @@
 import numpy as np
 
 def f(x):
-  return x**2 - 5
+	return 2*x**2 + 8*x - 5
 
 a = 0
 b = 5
