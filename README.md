@@ -1,5 +1,6 @@
 # Sci-Comp-2
 QUIZ SciComp-2
+-> Liat preview menggunakan button CODE agar lebih bagus
 ===============================================
                      |SOAL| 
 ===============================================
