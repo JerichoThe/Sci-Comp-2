@@ -1,20 +1,21 @@
 import numpy as np
 def f(x):
 	return 2*x**2 + 8*x - 5
-
 def g(x):
-	return 4*x + 8
+  return 4*x + 8
 
-def raphson(x0,e=0.01,t=50):
+def raphson(x,i,e=0.01,n=20):
+  i = i+1
+  if(i>n):
+    print("Iteration More Than ",n)
+    return
+  if(np.abs(f(x))<e):
+    print(f"Root : {x} , Iteration : {i}")
+    return
+  x1 = x - f(x)/g(x)
+  raphson(x1,i)
 
-	if(np.abs(f(x0)) < e):
-		print("Root = ", x0)
-		return
-
-	x1 = x0 - f(x0)/g(x0)
-	raphson(x1)
-    
-raphson(6)
+raphson(6,0)
 # Max Iterate : 50
 
 # Tolerance : 0.01
