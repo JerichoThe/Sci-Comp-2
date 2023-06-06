@@ -27,7 +27,7 @@ def gauss_seidel(x_list, y_list, e = 0.001, n=20):
   y_arr = np.array(y_list)
 
   diagonals = np.array(np.diag(np.abs(x_arr)))
-  not_diagonals = np.array(np.sum(np.abs(x_arr),1)-diagonals)
+  not_diagonals = np.sum(np.abs(x_arr),1)-diagonals
 
   if(np.all(diagonals < not_diagonals)):
     print("Not diagonally dominant")
@@ -35,9 +35,6 @@ def gauss_seidel(x_list, y_list, e = 0.001, n=20):
 
   diag = np.array(np.diag(x_arr))
   np.fill_diagonal(x_arr,0)
-  
-  
-  
 
   arr_old = np.zeros(np.shape(x_list[0]))
   x_arr = -x_arr
