@@ -1,6 +1,4 @@
-	
 import numpy as np
-
 x = [
     [
         [4, 2, 1],
@@ -23,42 +21,45 @@ y = [
     [1500,1200,1000],
     [12,5,10]
 ]
+import numpy as np
+
+def gauss_seidel(x_list, y_list, e = 0.001, n=20):
+  x_arr = np.array(x_list)
+  y_arr = np.array(y_list)
+
+  diagonals = np.array(np.diag(np.abs(x_arr)))
+  not_diagonals = np.array(np.sum(np.abs(x_arr),1)-diagonals)
+
+  if(np.all(diagonals < not_diagonals)):
+    print("Not diagonally dominant")
+    return False
+
+  diag = np.array(np.diag(x_arr))
+  np.fill_diagonal(x_arr,0)
+  
+  
+  
+
+  arr_old = np.zeros(np.shape(x_list[0]))
+  x_arr = -x_arr
+
+  for i in range(n):
+    arr_new = np.array(arr_old)
+    for j, row in enumerate(x_arr):
+      arr_new[j] = (y_arr[j]+np.dot(row, arr_new))/diag[j]
+    print("Iter", i+1)
+    print("Array",arr_new)
+
+    gap = arr_new - arr_old
+    euclid = np.sqrt(np.dot(gap,gap))
+
+    if(euclid < e):
+      print("Solved")
+      return True
+
+    arr_old = arr_new
 
 
-def gauss_seidel(x_list,y_list,e=0.001,n=20):
-    x_arr = np.array(x_list)
-    y_arr = np.array(y_list)
-
-    diagonals = np.array(np.diag(x_arr))
-    np.fill_diagonal(x_arr,0)
-    not_diagonals = np.array(np.sum(np.abs(x_arr),1))
-
-    if(np.all(diagonals < not_diagonals)):
-        print("Not Diagonally Dominant")
-        return False
-
-    arr_old = np.zeros(np.shape(x_list[0]))
-    x_arr = -x_arr
-
-    for i in range(n):
-        arr_new = np.array(arr_old)
-        
-
-        for j, row in enumerate(x_arr):
-            arr_new[j] = (y_arr[j]+np.dot(row,arr_new))/diagonals[j]
-
-        gap = arr_new - arr_old
-        euclid = np.sqrt(np.dot(gap,gap))
-        print("Iter", i+1)
-        print("Array", arr_new)
-
-        if(euclid < e):
-            print("Solved")
-            return True
-
-        arr_old = arr_new
-
-
-for a,b in zip(x,y):
-    print(f"X : {a}, Y : {b}")
-    gauss_seidel(a,b)
+for x,y in zip(Xs,Ys):
+  print(f"X : {x}, Y : {y}")
+  gauss_seidel(x,y)
